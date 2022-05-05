@@ -1,0 +1,9 @@
+[
+    {
+        "id": "lavalink",
+        "hostname": "localhost",
+        "port": 2333,
+        "password": "youshallnotpass",
+        "secure": false
+    }
+]
