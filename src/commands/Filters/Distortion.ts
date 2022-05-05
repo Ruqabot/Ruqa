@@ -9,47 +9,49 @@ import playerHasFilters from "../../functions/PlayerHasFilters";
 import hasPremium from "../../functions/HasPremium";
 
 export default new Command({
-    name: "distortion",
-    description: "Enable/disable distortion audio filter",
-    aliases: [],
-    category: "Filters",
-    isDisabled: false,
+  name: "distortion",
+  description: "Enable/disable distortion audio filter",
+  aliases: [],
+  category: "Filters",
+  isDisabled: false,
 
-    run: async ({ message }: {
-        client: Client,
-        message: Message,
-    }) => {
-        if (!(await hasPremium(message, message.author.id))) {
-            return;
-        }
-        if (!(await notInVC(message))
-        || (!(await notInSameVC(message))
-        || (!(await configuredDJRole(message))))) {
-            return;
-        }
+  run: async function ({ message }: { client: Client; message: Message }) {
+    if (!(await hasPremium(message, message.author.id))) {
+      return;
+    }
+    if (
+      !(await notInVC(message)) ||
+      !(await notInSameVC(message)) ||
+      !(await configuredDJRole(message))
+    ) {
+      return;
+    }
 
-        const [player, ret] = await isPlayerActive(message);
-        if (!ret) {
-            return;
-        }
+    const [player, ret] = await isPlayerActive(message);
+    if (!ret) {
+      return;
+    }
 
-        if (player?.filters.active?.distortion) {
-            player.filters.clear();
-            await buildMsg(message, "Disabled distortion filter.");
-        } else {
-            // eslint-disable-next-line no-unused-expressions
-            playerHasFilters(player!);
-            player?.filters.setDistortion({
-                sinOffset: 0.0,
-                sinScale: 1.0,
-                cosOffset: 0.0,
-                cosScale: 1.0,
-                tanOffset: 0.0,
-                tanScale: 1.0,
-                offset: 0.0,
-                scale: 1.0,
-            }, true);
-            await buildMsg(message, "Enabled distortion filter.");
-        }
-    },
+    if (player?.filters.active?.distortion) {
+      player.filters.clear();
+      await buildMsg(message, "Disabled distortion filter.");
+    } else {
+      // eslint-disable-next-line no-unused-expressions
+      playerHasFilters(player!);
+      player?.filters.setDistortion(
+        {
+          sinOffset: 0.0,
+          sinScale: 1.0,
+          cosOffset: 0.0,
+          cosScale: 1.0,
+          tanOffset: 0.0,
+          tanScale: 1.0,
+          offset: 0.0,
+          scale: 1.0,
+        },
+        true
+      );
+      await buildMsg(message, "Enabled distortion filter.");
+    }
+  },
 });

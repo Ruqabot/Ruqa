@@ -9,38 +9,40 @@ import playerHasFilters from "../../functions/PlayerHasFilters";
 import hasPremium from "../../functions/HasPremium";
 
 export default new Command({
-    name: "nightcore",
-    description: "Enable/disable nightcore audio filter",
-    aliases: [],
-    category: "Filters",
-    isDisabled: false,
+  name: "nightcore",
+  description: "Enable/disable nightcore audio filter",
+  aliases: [],
+  category: "Filters",
+  isDisabled: false,
 
-    run: async ({ message }: {
-        client: Client,
-        message: Message,
-    }) => {
-        if (!(await hasPremium(message, message.author.id))) {
-            return;
-        }
-        if (!(await notInVC(message))
-        || (!(await notInSameVC(message))
-        || (!(await configuredDJRole(message))))) {
-            return;
-        }
+  run: async ({ message }: { client: Client; message: Message }) => {
+    if (!(await hasPremium(message, message.author.id))) {
+      return;
+    }
+    if (
+      !(await notInVC(message)) ||
+      !(await notInSameVC(message)) ||
+      !(await configuredDJRole(message))
+    ) {
+      return;
+    }
 
-        const [player, ret] = await isPlayerActive(message);
-        if (!ret) {
-            return;
-        }
+    const [player, ret] = await isPlayerActive(message);
+    if (!ret) {
+      return;
+    }
 
-        if (player?.filters.active?.timescale) {
-            await buildMsg(message, "Disabled nightcore filter.");
-            player.filters.clear();
-        } else {
-            // eslint-disable-next-line no-unused-expressions
-            playerHasFilters(player!);
-            player?.filters.setTimescale({ speed: 1.15, pitch: 1.125, rate: 1 }, true);
-            await buildMsg(message, "Enabled nightcore filter.");
-        }
-    },
+    if (player?.filters.active?.timescale) {
+      await buildMsg(message, "Disabled nightcore filter.");
+      player.filters.clear();
+    } else {
+      // eslint-disable-next-line no-unused-expressions
+      playerHasFilters(player!);
+      player?.filters.setTimescale(
+        { speed: 1.15, pitch: 1.125, rate: 1 },
+        true
+      );
+      await buildMsg(message, "Enabled nightcore filter.");
+    }
+  },
 });
