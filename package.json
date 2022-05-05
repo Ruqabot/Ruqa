@@ -3,6 +3,13 @@
   "version": "4.3.0",
   "description": "Open source Discord music bot",
   "main": "dist/index.js",
+   "scripts": {
+    "build": "tsc",
+    "build:clean": "yarn rmdir && yarn build",
+    "start": "yarn build && node dist/index",
+    "rmdir": "rm -rf dist",
+    "prettify": "npx prettier --write ."
+  },
   "keywords": [],
   "author": "Ruzie",
   "license": "GPL-3.0",
