@@ -1,0 +1,2 @@
+# Ruqa
+Discord Music bot
