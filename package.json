@@ -3,11 +3,10 @@
   "version": "4.3.0",
   "description": "Open source Discord music bot",
   "main": "dist/index.js",
-   "scripts": {
-    "git": "git clone https://github.com/Ruqabot/vulkava-fork.git",
-    "build": "tsc && cd vulkava-fork && tsc && mv dist ../",
+  "scripts": {
+    "build": "tsc",
     "build:clean": "yarn rmdir && yarn build",
-    "start": "yarn build && rm -rf node_modules/vulkava && mv dist/* node_modules/vulkava && node dist/index",
+    "start": "yarn build && node dist/index",
     "rmdir": "rm -rf dist",
     "prettify": "npx prettier --write ."
   },
