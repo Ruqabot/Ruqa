@@ -9,38 +9,37 @@ import playerHasFilters from "../../functions/PlayerHasFilters";
 import hasPremium from "../../functions/HasPremium";
 
 export default new Command({
-    name: "rotation",
-    description: "Enable/disable rotation audio filter",
-    aliases: [],
-    category: "Filters",
-    isDisabled: false,
+  name: "rotation",
+  description: "Enable/disable rotation audio filter",
+  aliases: [],
+  category: "Filters",
+  isDisabled: false,
 
-    run: async ({ message }: {
-        client: Client,
-        message: Message,
-    }) => {
-        if (!(await hasPremium(message, message.author.id))) {
-            return;
-        }
-        if (!(await notInVC(message))
-        || (!(await notInSameVC(message))
-        || (!(await configuredDJRole(message))))) {
-            return;
-        }
+  run: async ({ message }: { client: Client; message: Message }) => {
+    if (!(await hasPremium(message, message.author.id))) {
+      return;
+    }
+    if (
+      !(await notInVC(message)) ||
+      !(await notInSameVC(message)) ||
+      !(await configuredDJRole(message))
+    ) {
+      return;
+    }
 
-        const [player, ret] = await isPlayerActive(message);
-        if (!ret) {
-            return;
-        }
+    const [player, ret] = await isPlayerActive(message);
+    if (!ret) {
+      return;
+    }
 
-        if (player?.filters.active?.rotation) {
-            await buildMsg(message, "Disabled rotation filter.");
-            player.filters.clear();
-        } else {
-            // eslint-disable-next-line no-unused-expressions
-            playerHasFilters(player!);
-            player?.filters.setRotation({ rotationHz: 0.5 }, true);
-            await buildMsg(message, "Enabled rotation filter.");
-        }
-    },
+    if (player?.filters.active?.rotation) {
+      await buildMsg(message, "Disabled rotation filter.");
+      player.filters.clear();
+    } else {
+      // eslint-disable-next-line no-unused-expressions
+      playerHasFilters(player!);
+      player?.filters.setRotation({ rotationHz: 0.5 }, true);
+      await buildMsg(message, "Enabled rotation filter.");
+    }
+  },
 });
