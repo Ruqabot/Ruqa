@@ -79,7 +79,6 @@ export async function configuredDJRole(
     if (data) {
         if (data?.configuredRole) {
             if (!message.member?.roles.find((x) => x === data?.configuredRole)) {
-                // eslint-disable-next-line no-unused-expressions
                 await message.channel.createMessage({ embeds: [new RichEmbed().setColor(RichEmbed.embedColor).setDescription("You don't have the DJ role to use this command.")], flags: 64 })
                 return false;
             }
