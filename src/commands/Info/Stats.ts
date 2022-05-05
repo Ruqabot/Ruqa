@@ -22,10 +22,10 @@ export default new Command({
         .setURL(`https://top.gg/bot/${client.user.id}`)
         .setDescription(`Hi! I'm ${client.user.username}, a Discord bot who can play music on voice channel from various sources.`)
         .addField("Status", `
-        • **Uptime:** ${prettyMs(uptime(), { verbose: true })}
+        • **Uptime:** ${prettyMs(uptime() * 1e3, { verbose: true })}
         • **Servers:** ${client.guilds.size}
         • **Shards:** ${client.shards.size} (active)
-        • **Heap Usage:** ${(memoryUsage().rss / 1000 / 1000).toFixed(2)} MiB
+        • **RSS Usage:** ${(memoryUsage().rss / 1000 / 1000).toFixed(2)} MiB
         • **Library:** Eris v${VERSION}
         • **Interpreter:** Node.js ${version}
         `);
