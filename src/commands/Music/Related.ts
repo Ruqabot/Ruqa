@@ -11,7 +11,7 @@ import Emojis from "../../jsons/emojis.json";
 
 export default new Command({
   name: "related",
-  description: "Automatically add releated tracks",
+  description: "Automatically add related tracks from current one",
   aliases: ["rel"],
   category: "Music",
   isDisabled: false,
