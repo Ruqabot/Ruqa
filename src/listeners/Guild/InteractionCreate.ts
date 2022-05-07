@@ -285,9 +285,6 @@ export default new Event(
 
       switch (interaction.data.custom_id) {
         case "q_previousStart":
-          if (!(await onlyAllowedRequester(interaction, player!))) {
-            return;
-          }
           ruqa.page = ruqa.page > 0 ? 0 : ruqa.pages.length - 1;
           await ruqa.cacheQueueMsg.edit({
             embeds: [
@@ -300,9 +297,6 @@ export default new Event(
           break;
 
         case "q_previous":
-          if (!(await onlyAllowedRequester(interaction, player!))) {
-            return;
-          }
           ruqa.page = ruqa.page > 0 ? --ruqa.page : ruqa.pages.length - 1;
           await ruqa.cacheQueueMsg.edit({
             embeds: [
@@ -315,9 +309,6 @@ export default new Event(
           break;
 
         case "q_forward":
-          if (!(await onlyAllowedRequester(interaction, player!))) {
-            return;
-          }
           ruqa.page = ruqa.page + 1 < ruqa.pages.length ? ++ruqa.page : 0;
           await ruqa.cacheQueueMsg.edit({
             embeds: [
@@ -330,9 +321,6 @@ export default new Event(
           break;
 
         case "q_forwardEnd":
-          if (!(await onlyAllowedRequester(interaction, player!))) {
-            return;
-          }
           ruqa.page =
             ruqa.page + 1 < ruqa.pages.length ? ruqa.pages.length - 1 : 0;
           await ruqa.cacheQueueMsg.edit({
