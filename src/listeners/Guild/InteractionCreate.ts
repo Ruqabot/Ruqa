@@ -16,6 +16,8 @@ import Event from "../../structures/Event";
 import ruqa from "../../index";
 import RichEmbed from "../../utils/RichEmbed";
 import { buildProgressBar } from "../../utils/Util";
+import notInVC from "../../functions/NotInVC";
+import notInSameVC from "../../functions/NotInSameVC";
 import onlyAllowedRequester from "../../functions/OnlyAllowedReq";
 
 export default new Event(
@@ -26,6 +28,10 @@ export default new Event(
     if (interaction instanceof ComponentInteraction) {
       const player = ruqa.audio.players.get(interaction.guildID!);
       let msg: Message;
+      if (!(await notInVC(interaction)) || !(await notInSameVC(interaction))) {
+        return;
+      }
+
       switch (interaction.data.custom_id) {
         case "pauseOrResume":
           if (!(await onlyAllowedRequester(interaction, player!))) {
@@ -238,9 +244,13 @@ export default new Event(
             .setDescription(
               `\n\n**Author**: ${player?.current?.author}\n**Requester**: <@!${
                 (player?.current?.requester as User).id
-              }>\n**Duration**: ${prettyMs(Number(player?.current?.duration), {
-                verbose: true,
-              })}`
+              }>\n**Duration**: ${
+                player?.current?.isStream
+                  ? "Stream"
+                  : prettyMs(Number(player?.current?.duration), {
+                      verbose: true,
+                    })
+              }`
             )
             .addField(
               "Upcoming",
