@@ -121,7 +121,6 @@ declare module "eris" {
     cacheMsgID: Message;
     cacheNpMsgID: Message;
     cacheQueueMsg: Message;
-    cacheLeaveMsg: Message;
     page: number;
     pages: string[];
   }
