@@ -19,14 +19,6 @@ export default new Event(
         return;
       }
       player.pause(false);
-
-      /**
-       * @description not blocking with "if"
-       */
-      try {
-        await ruqa.cacheLeaveMsg.delete();
-      } catch {}
-
       if (ruqa.cacheMsgID) {
         ruqa.cacheMsgID.edit({
           components: [
