@@ -13,6 +13,18 @@ export default new Event(
     }
 
     if (ruqa.user.id === member.id) {
+      if (ruqa.cacheMsgID) {
+        await ruqa.cacheMsgID.delete();
+      }
+      if (ruqa.cacheNpMsgID) {
+        await ruqa.cacheNpMsgID.delete();
+      }
+      if (ruqa.cacheQueueMsg) {
+        await ruqa.cacheQueueMsg.delete();
+      }
+      if (ruqa.cacheLeaveMsg) {
+        await ruqa.cacheLeaveMsg.delete();
+      }
       player.destroy();
     }
 
