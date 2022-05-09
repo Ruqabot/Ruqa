@@ -1,7 +1,6 @@
 import { Constants, type Member, type VoiceChannel } from "eris";
 import Event from "../../structures/Event";
 import ruqa from "../../index";
-import RichEmbed from "../../utils/RichEmbed";
 import { trackStartModifier, nowplayingModifier } from "../../utils/SetButtons";
 
 export default new Event(
@@ -22,9 +21,6 @@ export default new Event(
       if (ruqa.cacheQueueMsg) {
         await ruqa.cacheQueueMsg.delete();
       }
-      if (ruqa.cacheLeaveMsg) {
-        await ruqa.cacheLeaveMsg.delete();
-      }
       player.destroy();
     }
 
@@ -37,14 +33,6 @@ export default new Event(
         return;
       }
       player.pause(true);
-      ruqa.cacheLeaveMsg = await ruqa.createMessage(player.textChannelId!, {
-        embeds: [
-          new RichEmbed()
-            .setColor(RichEmbed.embedColor)
-            .setDescription("All left me alone, I'll pause the player."),
-        ],
-      });
-
       if (ruqa.cacheMsgID) {
         ruqa.cacheMsgID.edit({
           components: [
