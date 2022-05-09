@@ -11,7 +11,7 @@ import Emojis from "../../jsons/emojis.json";
 
 export default new Command({
   name: "related",
-  description: "Automatically add related tracks from current one",
+  description: "Automatically add releated tracks",
   aliases: ["rel"],
   category: "Music",
   isDisabled: false,
@@ -35,9 +35,7 @@ export default new Command({
 
     let msg: Message;
     const currentVidID = player?.current?.identifier;
-    const reactedCache = (await message.addReaction(
-      Emojis[0].flowing_sand
-    )) as unknown as Message;
+    await message.addReaction(Emojis[0].flowing_sand);
 
     const res = await client.audio.search(
       `https://www.youtube.com/watch?v=${currentVidID}&list=RD${currentVidID}&start_radio=1`
@@ -75,7 +73,7 @@ export default new Command({
             ),
         ],
       });
-      await reactedCache.removeReactions();
+      await message.removeReaction(Emojis[0].flowing_sand);
     }
   },
 });
