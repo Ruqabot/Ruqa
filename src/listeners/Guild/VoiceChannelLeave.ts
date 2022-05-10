@@ -12,6 +12,8 @@ export default new Event(
     }
 
     if (ruqa.user.id === member.id) {
+      player.destroy();
+
       if (ruqa.cacheMsgID) {
         await ruqa.cacheMsgID.delete();
       }
@@ -21,7 +23,6 @@ export default new Event(
       if (ruqa.cacheQueueMsg) {
         await ruqa.cacheQueueMsg.delete();
       }
-      player.destroy();
     }
 
     if (
