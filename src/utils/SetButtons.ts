@@ -208,8 +208,8 @@ export const helpCommandLinks: ActionRowComponents[] = [
     style: Constants.ButtonStyles.LINK,
     label: "Invite me!",
     url: `https://discord.com/api/oauth2/authorize?client_id=${
-      ruqa?.user?.id
-    }&permissions=${env.INVITE_PERMISSIONS ?? 0}&scope=bot`,
+      env.BOT_ID ?? "not_set"
+    }&permissions=${env.INVITE_PERMISSIONS ?? "not_set"}&scope=bot`,
   },
   {
     type: Constants.ComponentTypes.BUTTON,
