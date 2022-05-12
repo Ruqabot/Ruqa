@@ -2,7 +2,7 @@
 
 A very simple Discord music bot, which let you to play music in voice channel and some more.
 
-Discord: https://discord.gg/CX9amVGee7 (Ruzie#4220)  
+Discord: https://discord.gg/CX9amVGee7 (Konaya#4220)  
 Friends Server: https://discord.gg/w8sEJJQJ8R (DarrenOfficial#3451)
 
 # Note
