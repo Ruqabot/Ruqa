@@ -19,7 +19,7 @@ export default class Ruqa extends Client {
   public aliases?: Map<string, unknown>;
 
   public constructor() {
-    super(env.DEVMODE ? env.DEVTOKEN! : env.TOKEN!, {
+    super(env.DEVMODE === "true" ? env.DEVTOKEN! : env.TOKEN!, {
       intents: ["guilds", "guildMessages", "guildVoiceStates"],
       restMode: true,
       defaultImageSize: 512,
