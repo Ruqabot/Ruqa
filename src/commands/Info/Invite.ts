@@ -1,12 +1,12 @@
-import { Client, Message } from "eris";
+import type { Client, Message } from "eris";
 import { env } from "node:process";
 import Command from "../../structures/Command";
 import Emojis from "../../jsons/emojis.json";
 
 export default new Command({
-  name: "support",
-  description: "Send the support server invite link",
-  aliases: ["assistant", "server"],
+  name: "invite",
+  description: "Send the invite link of Ruqa",
+  aliases: ["addme", "inv"],
   category: "Info",
   isDisabled: false,
 
