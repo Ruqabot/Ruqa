@@ -35,7 +35,7 @@ export default new Command({
       return;
     }
     const cacheSize = player?.queue.length;
-    player?.queue.slice(0, 0);
+    player?.queue.splice(0, cacheSize);
     await buildMsg(message, `Removed **${cacheSize}** tracks from the queue.`);
   },
 });
