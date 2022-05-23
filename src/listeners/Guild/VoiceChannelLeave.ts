@@ -28,14 +28,14 @@ export default new Event(
     if (
       !member.bot &&
       player.voiceChannelId === oldChannel.id &&
-      oldChannel.voiceMembers.filter((x) => x.bot).length
+      oldChannel.voiceMembers.filter((x) => !x.bot).length === 0
     ) {
       if (player.paused) {
         return;
       }
       player.pause(true);
       if (ruqa.cacheMsgID) {
-        ruqa.cacheMsgID.edit({
+        await ruqa.cacheMsgID.edit({
           components: [
             {
               type: Constants.ComponentTypes.ACTION_ROW,
@@ -45,7 +45,7 @@ export default new Event(
         });
       }
       if (ruqa.cacheNpMsgID) {
-        ruqa.cacheNpMsgID.edit({
+        await ruqa.cacheNpMsgID.edit({
           components: [
             {
               type: Constants.ComponentTypes.ACTION_ROW,

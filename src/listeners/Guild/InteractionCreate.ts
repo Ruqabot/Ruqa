@@ -52,7 +52,7 @@ export default new Event(
               ],
             });
             if (ruqa.cacheNpMsgID) {
-              ruqa.cacheNpMsgID.edit({
+              await ruqa.cacheNpMsgID.edit({
                 components: [
                   {
                     type: Constants.ComponentTypes.ACTION_ROW,
@@ -67,7 +67,7 @@ export default new Event(
               interaction.channel.id,
               interaction.message.id
             );
-            msg.edit({
+            await msg.edit({
               components: [
                 {
                   type: Constants.ComponentTypes.ACTION_ROW,
@@ -76,7 +76,7 @@ export default new Event(
               ],
             });
             if (ruqa.cacheNpMsgID) {
-              ruqa.cacheNpMsgID.edit({
+              await ruqa.cacheNpMsgID.edit({
                 components: [
                   {
                     type: Constants.ComponentTypes.ACTION_ROW,
@@ -122,9 +122,9 @@ export default new Event(
             interaction.channel.id,
             interaction.message.id
           );
-          await msg.delete();
+          await msg?.delete();
           if (ruqa.cacheNpMsgID) {
-            ruqa.cacheNpMsgID.delete();
+            await ruqa.cacheNpMsgID.delete();
           }
           break;
       }
@@ -154,7 +154,7 @@ export default new Event(
               ],
             });
             if (ruqa.cacheMsgID) {
-              ruqa.cacheMsgID.edit({
+              await ruqa.cacheMsgID.edit({
                 components: [
                   {
                     type: Constants.ComponentTypes.ACTION_ROW,
@@ -169,7 +169,7 @@ export default new Event(
               interaction.channel.id,
               interaction.message.id
             );
-            msg.edit({
+            await msg.edit({
               components: [
                 {
                   type: Constants.ComponentTypes.ACTION_ROW,
@@ -178,7 +178,7 @@ export default new Event(
               ],
             });
             if (ruqa.cacheMsgID) {
-              ruqa.cacheMsgID.edit({
+              await ruqa.cacheMsgID.edit({
                 components: [
                   {
                     type: Constants.ComponentTypes.ACTION_ROW,
@@ -282,9 +282,9 @@ export default new Event(
             interaction.channel.id,
             interaction.message.id
           );
-          await msg.delete();
+          await msg?.delete();
           if (ruqa.cacheNpMsgID) {
-            ruqa.cacheNpMsgID.delete();
+            await ruqa.cacheNpMsgID.delete();
           }
           break;
       }
@@ -351,7 +351,7 @@ export default new Event(
             interaction.channel.id,
             interaction.message.id
           );
-          await msg.delete();
+          await msg?.delete();
           break;
       }
     }

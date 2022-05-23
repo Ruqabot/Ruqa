@@ -1,9 +1,4 @@
-import {
-  Constants,
-  type TextChannel,
-  type Message,
-  type TextableChannel,
-} from "eris";
+import { Constants, type TextChannel } from "eris";
 import type { Player } from "vulkava";
 import ruqa from "../../index";
 import PlayerEvent from "../../structures/PlayerEvent";
@@ -25,7 +20,7 @@ export default new PlayerEvent("trackStart", async (player: Player) => {
       `https://i.ytimg.com/vi/${player.current?.identifier}/mqdefault.jpg`
     );
   // eslint-disable-next-line prefer-const
-  ruqa.cacheMsgID = (await channel.createMessage({
+  ruqa.cacheMsgID = await channel.createMessage({
     embeds: [embed],
     components: [
       {
@@ -33,5 +28,5 @@ export default new PlayerEvent("trackStart", async (player: Player) => {
         components: trackStartButtons,
       },
     ],
-  })) as Message<TextableChannel>;
+  });
 });

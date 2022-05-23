@@ -9,7 +9,7 @@ import Logger from "../utils/Logger";
 import WSEvents from "../options/WebsocketEvents";
 import lavanodes from "../jsons/nodes.json";
 import spotifyCredential from "../jsons/spotify.json";
-import "../utils/Errors";
+import "../utils/NodeErrors";
 
 config({ path: resolve(".", ".env") });
 
@@ -20,7 +20,12 @@ export default class Ruqa extends Client {
 
   public constructor() {
     super(env.DEVMODE === "true" ? env.DEVTOKEN! : env.TOKEN!, {
-      intents: ["guilds", "guildMessages", "guildVoiceStates"],
+      intents: [
+        "guilds",
+        "guildMessages",
+        "guildVoiceStates",
+        "messageContent",
+      ],
       restMode: true,
       defaultImageSize: 512,
       disableEvents: WSEvents,
@@ -38,7 +43,9 @@ export default class Ruqa extends Client {
     await this.loadGuildEvents();
     await this.loadVulkava();
     await this.loadLavalinkEvents();
-    await this.linkMongoDB();
+    if (env.MONGO_MUST_CONNECT === "true") {
+      await this.linkMongoDB();
+    }
   }
 
   private async loadCommands(): Promise<this | undefined> {
@@ -106,10 +113,10 @@ export default class Ruqa extends Client {
 
   private async linkMongoDB(): Promise<void> {
     await connect(env.MONGODB_URI!)
-      .then(() => Logger.success("Connected with mongodb"))
+      .then(() => Logger.success("Connected with mongodb."))
       .catch((e) =>
         Logger.error(
-          `An error occurred while establishing connection with mongodb. Error:\n${e}`
+          `An error occurred while establishing connection with mongodb.\nError:\n${e}`
         )
       );
   }
