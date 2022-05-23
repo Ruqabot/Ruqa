@@ -67,7 +67,7 @@ export default new Command({
       );
 
     if (client.cacheNpMsgID) {
-      client.cacheNpMsgID.delete();
+      await client.cacheNpMsgID.delete();
     }
     client.cacheNpMsgID = await message.channel.createMessage({
       embeds: [embed],

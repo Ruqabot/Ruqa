@@ -28,6 +28,6 @@ export default new Command({
     }
     client.audio.emit("trackEnd", () => {});
     player?.destroy();
-    await message.addReaction(Emojis[0].wave).catch(() => {});
+    await message.addReaction(Emojis[0].wave);
   },
 });

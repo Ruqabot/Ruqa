@@ -43,7 +43,10 @@ export default new Command({
       );
       return;
     }
-    player?.filters.setVolume(Number(vol));
-    await buildMsg(message, `Volume configured to **${player?.volume.toFixed(0)}%**.`);
+    player?.filters.setVolume(Number(vol), true);
+    await buildMsg(
+      message,
+      `Volume configured to **${player?.volume.toFixed(0)}%**.`
+    );
   },
 });

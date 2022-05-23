@@ -15,7 +15,7 @@ export default new Command({
   category: "Filters",
   isDisabled: false,
 
-  run: async function ({ message }: { client: Client; message: Message }) {
+  run: async ({ message }: { client: Client; message: Message }) => {
     if (!(await hasPremium(message, message.author.id))) {
       return;
     }

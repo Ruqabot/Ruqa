@@ -5,6 +5,7 @@ import buildMsg from "../../functions/BuildMsg";
 import notInVC from "../../functions/NotInVC";
 import notInSameVC from "../../functions/NotInSameVC";
 import Emojis from "../../jsons/emojis.json";
+import checkOwnVCPerm from "../../functions/CheckOwnVCPerm";
 
 export default new Command({
   name: "play",
@@ -22,7 +23,12 @@ export default new Command({
     message: Message;
     args: string[];
   }) => {
-    if (!(await notInVC(message)) || !(await notInSameVC(message))) {
+    if (
+      !(await notInVC(message)) ||
+      !(await notInSameVC(message)) ||
+      !(await checkOwnVCPerm(message, "voiceConnect")) ||
+      !(await checkOwnVCPerm(message, "voiceSpeak"))
+    ) {
       return;
     }
     const query = args.join(" ");
@@ -69,7 +75,7 @@ export default new Command({
               ),
           ],
         });
-        res.tracks.forEach((track) => {
+        res.tracks?.forEach((track) => {
           track.setRequester(message.author);
           player.queue.push(track);
         });

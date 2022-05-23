@@ -3,6 +3,7 @@ import Command from "../../structures/Command";
 import buildMsg from "../../functions/BuildMsg";
 import notInVC from "../../functions/NotInVC";
 import Emojis from "../../jsons/emojis.json";
+import checkOwnVCPerm from "../../functions/CheckOwnVCPerm";
 
 export default new Command({
   name: "join",
@@ -12,7 +13,10 @@ export default new Command({
   isDisabled: false,
 
   run: async ({ client, message }: { client: Client; message: Message }) => {
-    if (!(await notInVC(message))) {
+    if (
+      !(await notInVC(message)) ||
+      !(await checkOwnVCPerm(message, "voiceConnect"))
+    ) {
       return;
     }
     let player = client.audio.players.get(message.guildID!);

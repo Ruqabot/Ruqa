@@ -5,8 +5,8 @@ import Emojis from "../../jsons/emojis.json";
 
 export default new Command({
   name: "invite",
-  description: "Send the invite link of Ruqa",
-  aliases: ["addme", "inv"],
+  description: "Send the support server invite link",
+  aliases: ["inv", "addme"],
   category: "Info",
   isDisabled: false,
 

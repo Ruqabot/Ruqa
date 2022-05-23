@@ -1,4 +1,4 @@
-import { ComponentInteraction, Message } from "eris";
+import { type ComponentInteraction, Message } from "eris";
 import RichEmbed from "../utils/RichEmbed";
 import buildMsg from "./BuildMsg";
 
