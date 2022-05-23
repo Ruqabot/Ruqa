@@ -10,5 +10,5 @@ export default new Event("ready", () => {
     name: `${env.DEFAULT_PREFIX ?? "-"}help`,
     type: Constants.ActivityTypes.GAME,
   });
-  ruqa.audio.start(ruqa.user.id);
+  ruqa.audio.start(env.DEVMODE === "true" ? env.TEST_BOT_ID! : env.BOT_ID!);
 });
