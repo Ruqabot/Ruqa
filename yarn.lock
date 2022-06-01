@@ -400,9 +400,9 @@ dotenv@^16.0.1:
   integrity sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==
 
 eris@DonovanDMC/eris#everything-v10:
-  version "0.16.2-dev"
-  uid "9e6093ab4cdaeceac75241edb2067a759ab7f63a"
-  resolved "https://codeload.github.com/DonovanDMC/eris/tar.gz/9e6093ab4cdaeceac75241edb2067a759ab7f63a"
+  version "0.16.2-everything-v10.ee1904a"
+  uid "0d28ea58410c0be288a2f36a09d92b4a1e3f5e10"
+  resolved "https://codeload.github.com/DonovanDMC/eris/tar.gz/0d28ea58410c0be288a2f36a09d92b4a1e3f5e10"
   dependencies:
     ws "^8.2.3"
   optionalDependencies:
