@@ -32,6 +32,6 @@
     "pretty-ms": "^8.0.0",
     "typescript": "^4.7.3",
     "vulkava": "Ruqabot/vulkava-ruqa#dist",
-    "ws": "^8.6.0"
+    "ws": "^8.7.0"
   }
 }
