@@ -1,5 +1,7 @@
 # Ruqa
 
+**Project concluded. During the lack of time and motivation.**
+
 A very simple Discord music bot, which let you to play music in voice channel and some more.
 
 Discord: https://discord.gg/pTYZHJRM4N (Konaya#4220)  
